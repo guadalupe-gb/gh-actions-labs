@@ -14,4 +14,4 @@ jobs:
       - name: Printing Folders
         run: |
           echo "Printing folders"
-          ls -la
+          ls
