@@ -23,5 +23,6 @@ jobs:
         run: |
             cd 04-using-actions/react-app
             ls
+            npm install
             npm ci
         #working-directory: 04-using-actions/react-app
