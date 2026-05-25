@@ -7,7 +7,7 @@ jobs:
             - name: Show OS
               run: |
                echo "This job is running on an Ubuntu runner."
-               echo "runner OS Ubuntu: ${{RUNNER_OS}}"
+               echo "runner OS Ubuntu: $RUNNER_OS"
 
     windows-echo:
         runs-on: windows-latest
