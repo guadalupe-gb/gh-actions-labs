@@ -6,4 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: echo
+<<<<<<< HEAD:.github/workflows/05-test.yaml
         run: echo "Testing workflow"
+=======
+        run: echo "Testing worklfow"
+>>>>>>> e0b09e719f22ae579da6dcf05797dac6eb093f3f:.github/workflows/05-test
