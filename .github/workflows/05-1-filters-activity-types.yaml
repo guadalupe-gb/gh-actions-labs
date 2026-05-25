@@ -5,7 +5,7 @@ on:
             - opened
             - synchronize
         branches:
-            - Dev
+            - main
         
 jobs:
     echo:
@@ -13,4 +13,3 @@ jobs:
         steps:
             - name: print echo
               run: echo "Running whenever a PR is opened or synchronized AND base branch is main"
-              
