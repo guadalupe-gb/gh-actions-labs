@@ -17,6 +17,12 @@ jobs:
                 echo "Run ID: ${{github.run_id}}"
                 echo "Run number: ${{github.run_number}}"
                 echo "Env: ${{env}}"
+                echo "Runner name: ${{runner.name}}"
+                echo "Inputs: ${{inputs}}"
+                echo "steps: ${{steps}}"
+                echo "secrets: ${{secrets}}"
+                echo "Job status: ${{job.status}}"
+                echo "Job workflow_file_path: ${{job.workflow_file_path}}"
             - name: Retrieve Variable
               run: |
                  echo "Variable value: ${{vars.MY_VAR}}"
