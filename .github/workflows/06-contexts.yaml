@@ -1,12 +1,18 @@
 name: 06 - Contexts
-run-name: "Context: ${{github.run_number}} | INPUT_VALUE - ${{inputs.input_value}}"
+run-name: "Context: ${{github.run_number}} | input_boolean: ${{inputs.input_boolean}} input_string: ${{inputs.input_string}} input_number: ${{inputs.input_number}}"
 on:
     push:
     workflow_dispatch:
         inputs:
-            input_value:
+            input_boolean:
                 type: boolean
                 default: false
+            input_string:
+                type: string
+                default: "My input - type: string"
+            input_number:
+                type: number
+                default: 0
 jobs:
     echo-data:
         runs-on: ubuntu-latest
