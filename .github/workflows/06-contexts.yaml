@@ -1,5 +1,5 @@
 name: 06 - Contexts
-run-name: "Probando el run name: ${{vars.MY_VAR}}"
+run-name: "Contexts: ${{github.run_number}}"
 on:
     push:
     workflow_dispatch:
