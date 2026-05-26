@@ -1,8 +1,12 @@
 name: 06 - Contexts
-run-name: "Contexts: ${{github.run_number}}"
+run-name: "Context: ${{github.run_number}} | INPUT_VALUE - ${{inputs.input_value}}"
 on:
     push:
     workflow_dispatch:
+        inputs:
+            input_value:
+                type: boolean
+                default: false
 jobs:
     echo-data:
         runs-on: ubuntu-latest
