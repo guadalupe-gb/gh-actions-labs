@@ -2,7 +2,7 @@ name: 06 - Contexts
 #run-name: ${{}}
 on:
     push:
-   # workflow_dispatch:
+    workflow_dispatch:
 jobs:
     echo-data:
         runs-on: ubuntu-latest
