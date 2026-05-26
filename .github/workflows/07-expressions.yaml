@@ -27,7 +27,7 @@ jobs:
             - name: "[debug] Print when triggered from main"
               # if: ${{inputs.debug_input == false && github.ref_name=='main'}}
               # if: inputs.debug_input == false && github.ref_name=='main'
-              if: ! inputs.debug_input && github.ref_name=='main'
+              if: ! (inputs.debug_input) && github.ref_name=='main'
               run: echo "I was triggered from main"
             - name: Greeting
               run: echo "Great job!"
