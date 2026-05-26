@@ -10,7 +10,7 @@ on:
                 default: false
             input_string:
                 type: string
-                default: "Type something"
+                default: "Default string input"
             input_number:
                 type: number
                 default: 0
@@ -33,9 +33,11 @@ jobs:
                 echo "workflow: ${{github.workflow}}"
                 echo "Run ID: ${{github.run_id}}"
                 echo "Run number: ${{github.run_number}}"
-                echo "Env: ${{env}}"
+                echo "Env WF: ${{env.MY_OVERWRITTEN_ENV_VAR_WF_2}}"
+                echo "Env Job: ${{env.MY_OVERWRITTEN_JOB_VAR_2}}"
                 echo "Runner name: ${{runner.name}}"
-                echo "Inputs: ${{inputs}}"
+                echo "Inputs: ${{inputs.input_string}}"
+                echo "Inputs: ${{inputs.input_number}}"
                 echo "steps: ${{steps}}"
                 echo "secrets: ${{secrets}}"
                 echo "Job status: ${{job.status}}"
@@ -45,13 +47,13 @@ jobs:
                  echo "Variable value: ${{vars.MY_VAR}}"
             - name: Print Environment variables workflow level
               env:
-                MY_OVERWRITTEN_ENV_VAR_WF_2: "Overwritten env var WF 2"
+                MY_OVERWRITTEN_ENV_VAR_WF_2: "Overwritten env var WF 2 step level"
               run: |
                 echo "WF Var 1: ${{env.MY_ENV_VAR_WF_1}}"
                 echo "WF var 2: ${{env.MY_OVERWRITTEN_ENV_VAR_WF_2}}"
             - name: Print environment variables job level
               env:
-                MY_OVERWRITTEN_JOB_VAR_2: "Overwritten en var job #2"
+                MY_OVERWRITTEN_JOB_VAR_2: "Overwritten en var job #2 step level"
               run: |
                 echo "Job Var1: ${{env.MY_JOB_VAR_1}} "
                 echo "Job Var2: ${{env.MY_OVERWRITTEN_JOB_VAR_2}} "
