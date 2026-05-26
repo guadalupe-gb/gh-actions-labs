@@ -42,8 +42,8 @@ jobs:
                 echo "secrets: ${{secrets}}"
                 echo "Job status: ${{job.status}}"
                 echo "Job workflow_file_path: ${{job.workflow_file_path}}"
-                echo "ENV VAR HITHUB - Branch $GITHUB_REF"
-                echo "ENV VAR HITHUB - GITHUB_JOB $GITHUB_JOB"
+                echo "ENV VAR GITHUB - Ref Branch: $GITHUB_REF"
+                echo "ENV VAR GITHUB - GITHUB_JOB Name: $GITHUB_JOB"
             - name: Retrieve Variable
               run: |
                  echo "Variable value: ${{vars.MY_VAR}}"
@@ -64,6 +64,7 @@ jobs:
         steps:
             - name: "print env vars Job #1"
               run: |
+                echo "ENV VAR GITHUB - GITHUB_JOB Name: $GITHUB_JOB"
                 echo "WF env var 1: $MY_ENV_VAR_WF_1"
                 echo "WF env var 2: $MY_OVERWRITTEN_ENV_VAR_WF_2"
                 echo "Job env var 1: $MY_JOB_VAR_1"
