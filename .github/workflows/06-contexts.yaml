@@ -2,7 +2,7 @@ name: 06 - Contexts
 run-name: "Context: ${{github.run_number}} "
 #run-name: "Context: ${{github.run_number}} | input_boolean: ${{inputs.input_boolean}} - input_string: ${{inputs.input_string}} - input_number: ${{inputs.input_number}}"
 on:
-    push:
+   # push:
     workflow_dispatch:
         inputs:
             input_boolean:

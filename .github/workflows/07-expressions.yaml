@@ -1,0 +1,34 @@
+name: 07 - Using Expressions
+run-name: Expressions | DEBUG - <'ON' if debug input is true, 'OFF' otherwise>
+on: 
+    push:
+    workflow_dispatch:
+        inputs:
+            debug_input:
+                type: boolean
+                default: false
+
+jobs:
+    echo:
+        runs-on: ubuntu-latest
+        steps:
+            - name: "[Debug] Print start-up data"
+              if: ${{inputs.debug_input == true}}
+              run: | 
+                echo "Triggered by: ${{github.event_name}}"
+                echo "Branch: ${{github.ref}}"
+                echo "Branch: $GITHUB_REF"
+                echo "Commit SHA: ${{github.sha}}"
+                echo "Runner OS: $RUNNER_OS"
+            - name: "[debug] Print when triggered from main"
+              if: ${{inputs.debug_input == false && github.ref_name=='main'}}
+              run: echo "I was triggered from main"
+            - name: Greeting
+              run: echo "Great job!"
+                
+
+
+
+
+    
+
