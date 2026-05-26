@@ -14,7 +14,8 @@ jobs:
         steps:
             - name: "[Debug] Print start-up data"
               # if: ${{inputs.debug_input == true}}
-              if: inputs.debug_input == true
+              # if: inputs.debug_input == true
+              if: inputs.debug_input
               run: | 
                 echo "Triggered by: ${{github.event_name}}"
                 echo "Branch github.ref: ${{github.ref}}"
@@ -25,7 +26,8 @@ jobs:
                 echo "Branch name: ${{github.ref_name}}"
             - name: "[debug] Print when triggered from main"
               # if: ${{inputs.debug_input == false && github.ref_name=='main'}}
-              if: inputs.debug_input == false && github.ref_name=='Dev'
+              # if: inputs.debug_input == false && github.ref_name=='main'
+              if: inputs.debug_input == false && github.ref_name=='main'
               run: echo "I was triggered from main"
             - name: Greeting
               run: echo "Great job!"
