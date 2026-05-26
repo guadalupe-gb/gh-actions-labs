@@ -36,8 +36,8 @@ jobs:
                 echo "Env WF: ${{env.MY_OVERWRITTEN_ENV_VAR_WF_2}}"
                 echo "Env Job: ${{env.MY_OVERWRITTEN_JOB_VAR_2}}"
                 echo "Runner name: ${{runner.name}}"
-                echo "Inputs: ${{inputs.input_string}}"
-                echo "Inputs: ${{inputs.input_number}}"
+                echo "Input_string: ${{inputs.input_string}}"
+                echo "Input_number: ${{inputs.input_number}}"
                 echo "steps: ${{steps}}"
                 echo "secrets: ${{secrets}}"
                 echo "Job status: ${{job.status}}"
@@ -57,3 +57,12 @@ jobs:
               run: |
                 echo "Job Var1: ${{env.MY_JOB_VAR_1}} "
                 echo "Job Var2: ${{env.MY_OVERWRITTEN_JOB_VAR_2}} "
+    echo_data2:
+        runs-on: ubuntu_latest
+        steps:
+            - name: "print env vars Job #1"
+              run: |
+                echo "WF env var 1: $MY_ENV_VAR_WF_1"
+                echo "WF env var 2: $MY_OVERWRITTEN_ENV_VAR_WF_2"
+                echo "Job env var 1: $MY_JOB_VAR_1"
+                echo "Job env var 2: $MY_OVERWRITTEN_JOB_VAR_2"
