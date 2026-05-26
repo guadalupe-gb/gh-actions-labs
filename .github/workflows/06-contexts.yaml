@@ -1,5 +1,5 @@
 name: 06 - Contexts
-#run-name: ${{}}
+run-name: "Probando el run name: ${{vars.MY_VAR}}"
 on:
     push:
     workflow_dispatch:
