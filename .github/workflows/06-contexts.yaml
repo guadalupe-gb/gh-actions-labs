@@ -1,5 +1,6 @@
 name: 06 - Contexts
-run-name: "Context: ${{github.run_number}} | input_boolean: ${{inputs.input_boolean}} input_string: ${{inputs.input_string}} input_number: ${{inputs.input_number}}"
+run-name: "Context: ${{github.run_number}} "
+#run-name: "Context: ${{github.run_number}} | input_boolean: ${{inputs.input_boolean}} - input_string: ${{inputs.input_string}} - input_number: ${{inputs.input_number}}"
 on:
     push:
     workflow_dispatch:
@@ -14,14 +15,14 @@ on:
                 type: number
                 default: 0
 env:
-    MY_ENV_VAR_WORKFLOW_1: "Enviroment Varible workflow level, #1"
-    MY_ENV_VAR_WORKFLOW_2: "Enviroment Varible workflow level, #2"
+    MY_ENV_VAR_WF_1: "Enviroment Varible workflow level, #1"
+    MY_OVERWRITTEN_ENV_VAR_WF_2: "Enviroment Varible workflow level, #2"
 jobs:
     echo-data:
         runs-on: ubuntu-latest
         env:
             MY_JOB_VAR_1: "Environment variable job level, #1"
-            MY_JOB_VAR_2: "Environment variable job level, #2"
+            MY_OVERWRITTEN_JOB_VAR_2: "Environment variable job level, #2"
         steps:
             - name: Display Information
               run: |
@@ -43,10 +44,14 @@ jobs:
               run: |
                  echo "Variable value: ${{vars.MY_VAR}}"
             - name: Print Environment variables workflow level
+              env:
+                MY_OVERWRITTEN_ENV_VAR_WF_2: "Overwritten env var WF 2"
               run: |
-                echo "WF Var 1: ${{env.MY_ENV_VAR_WORKFLOW_1}}"
-                echo "WF var 2; ${{env.MY_ENV_VAR_WORKFLOW_2}}"
+                echo "WF Var 1: ${{env.MY_ENV_VAR_WF_1}}"
+                echo "WF var 2: ${{env.MY_OVERWRITTEN_ENV_VAR_WF_2}}"
             - name: Print environment variables job level
+              env:
+                MY_OVERWRITTEN_JOB_VAR_2: "Overwritten en var job #2"
               run: |
                 echo "Job Var1: ${{env.MY_JOB_VAR_1}} "
-                echo "Job Var2: ${{env.MY_JOB_VAR_2}} "
+                echo "Job Var2: ${{env.MY_OVERWRITTEN_JOB_VAR_2}} "
