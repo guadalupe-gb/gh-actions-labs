@@ -42,6 +42,8 @@ jobs:
                 echo "secrets: ${{secrets}}"
                 echo "Job status: ${{job.status}}"
                 echo "Job workflow_file_path: ${{job.workflow_file_path}}"
+                echo "ENV VAR HITHUB - Branch $GITHUB_REF"
+                echo "ENV VAR HITHUB - GITHUB_JOB $GITHUB_JOB"
             - name: Retrieve Variable
               run: |
                  echo "Variable value: ${{vars.MY_VAR}}"
