@@ -1,6 +1,7 @@
 name: 08 - Using Variables
+run-name: "Overwritten variables run: ${{github.run_number}}"
 on:
-    push:
+    #push:
     workflow_dispatch:
 env:
     WORKFLOW_VAR: "Workflow env var"
