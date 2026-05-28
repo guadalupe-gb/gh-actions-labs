@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - name: Status step
-          run: exit 0
+          run: exit ${{vars.STATUS_STEP}}
         - name: Executed if previous step succeed.
           if: ${{ success()}}
           run: echo "Printed because the previous steps succeed."
