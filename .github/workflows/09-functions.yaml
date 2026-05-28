@@ -1,0 +1,27 @@
+name: 09 - Using Functions
+run-name: "Functions Run #${{github.run_number}}"
+on: 
+    pull_request:
+    workflow_dispatch:
+
+jobs:
+  echo1:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Failing step
+          run: exit 1
+        - name: Executed if previous step succeed.
+          if: ${{ success()}}
+          run: echo "Printed because the previous steps succeed."
+        - name: Executed if previous step fail.
+          if: ${{ failure() }}
+          run: echo "Printed because the previous step failed"
+        - name: Executed if job is no cancelled
+          if: ${{ ! cancelled() }}
+          run: echo "workflow not cancelled."
+        - name: Executed if job is cancelled
+          if: ${{ cancelled() }}
+          run: echo "Job cancelled"
+
+            
+
