@@ -3,13 +3,17 @@ run-name: "Functions Run #${{github.run_number}}"
 on: 
     pull_request:
     workflow_dispatch:
+        inputs:
+            status:
+                type: number
+                default: 0
 
 jobs:
   echo1:
     runs-on: ubuntu-latest
     steps:
         - name: Status step
-          run: exit ${{vars.STATUS_STEP}}
+          run: exit ${{inputs.status}}
         - name: Executed if previous step succeed.
           if: ${{ success()}}
           run: echo "Printed because the previous steps succeed."
