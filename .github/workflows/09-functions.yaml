@@ -12,6 +12,8 @@ jobs:
   echo1:
     runs-on: ubuntu-latest
     steps:
+        - name: Sleep fo 20 seconds
+          run: sleep 20
         - name: Status step
           run: exit ${{inputs.status}}
         - name: Executed if previous step succeed.
