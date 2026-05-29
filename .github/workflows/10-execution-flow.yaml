@@ -4,6 +4,11 @@ on:
         inputs:
             pass-unit-tests:
                 type: boolean
+                description: Wheter unit test will pass or not
+                default: false
+            continue-on-error: 
+                type: boolean
+                description: Continue unit test or not
                 default: false
 
 jobs:
@@ -11,17 +16,20 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Lint and build
-              id: lint-build-1
-              run: echo "Linting and building project" 
+              run: |
+                # npm run Lint
+                # npm run format:check
+                # npm run tsc:check
+                # npm run build
+                echo "Linting and building project" 
     unit-tests-2:
         runs-on: ubuntu-latest
         continue-on-error: true
         steps:
             - name: Running unit tests
-              id: unit-tests-2
               run: echo "Running tests..."
             - name: Failing tests
-              if: ${{! inputs.pass-unit-tests}} 
+              if: ${{ !inputs.pass-unit-tests}} 
               run: exit 1
     deploy-nonprod-3:
         runs-on: ubuntu-latest
@@ -30,7 +38,6 @@ jobs:
             - unit-tests-2
         steps:
             - name: Deploying to nonprod
-              id: deploy-nonprod-3
               if: ${{ success() }}
               run: echo "Deploying to nonprod...."
     e2e-tests-4:
@@ -40,7 +47,6 @@ jobs:
         if: ${{ success() }}
         steps:
             - name: Running E2E tests
-              id: e2e-tests-4
               run: echo "Running E2E tests"
     load-tests-5:
         runs-on: ubuntu-latest
@@ -49,7 +55,6 @@ jobs:
         if: ${{ success()}}
         steps:
             - name: Running load tests
-              id: load-tests-5
               run: echo "Running load tests"
     deploy-prod-6:
         runs-on: ubuntu-latest
@@ -59,5 +64,4 @@ jobs:
         if: ${{ success() }}
         steps:
             - name: Deploying to prod
-              id: deploy-prod-6
               run: echo "Deploying to prod..."
