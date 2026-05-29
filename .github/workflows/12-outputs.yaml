@@ -45,6 +45,6 @@ jobs:
               run: echo "Deploying"
             - name: Print Outputs
               run: |
-                echo "build var: output1=${{needs.build.outputs.output1}}"
-                echo "step_with_mistake var: mistake=${{needs.build.outputs.mistake}}"
+                echo "step_id:build   var: output1=${{needs.build.outputs.output1}}"
+                echo "step_id:step_with_mistake   var: mistake=${{needs.build.outputs.mistake}}"
     
