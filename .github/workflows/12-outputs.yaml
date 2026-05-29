@@ -15,6 +15,7 @@ jobs:
         outputs:
             mystatus: ${{steps.mybuild.outputs.STATUS}}
             output1: ${{steps.mybuild.outputs.OUTPUT1}}
+            mistake: ${{steps.step_with_mistake.outputs.mistake}}
         steps:
             - name: Print GITHUB_OUTPUT path
               run: |
@@ -29,7 +30,8 @@ jobs:
                 echo "output2=value2" >> "$GITHUB_OUTPUT"
                 cat "$GITHUB_OUTPUT"
             - name: Step with mistake
-              run: |
+              id: step_with_mistake
+              run: |  
                 echo "mistake=true" > "$GITHUB_OUTPUT"
                 cat "$GITHUB_OUTPUT"
                 echo "$GITHUB_OUTPUT"
@@ -42,4 +44,7 @@ jobs:
             - name: Deploy
               run: echo "Deploying"
             - name: Print Outputs
-              run: echo "${{needs.build.outputs.output1}}"
+              run: |
+                echo "build var:output1= ${{needs.build.outputs.output1}}"
+                echo "step_with_mistake var:mistake:= ${{needs.build.outputs.mistake}}"
+    
