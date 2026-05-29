@@ -43,4 +43,4 @@ jobs:
         if: ${{ success() }}
         steps:
             - name: Deploying to prod
-              run: "Deploying to prod..."
+              run: echo "Deploying to prod..."
