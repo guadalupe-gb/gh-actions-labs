@@ -6,6 +6,8 @@ on:
         inputs:
             status:
                 type: number
+                description: "status of the job"
+                required: false
                 default: 0
 
 jobs:
