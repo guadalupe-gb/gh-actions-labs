@@ -4,7 +4,7 @@ on:
         inputs:
             pass-unit-tests:
                 type: boolean
-                description: Wheter unit test will pass or not
+                description: Whether unit test will pass or not
                 default: false
             continue-on-error: 
                 type: boolean
@@ -24,7 +24,7 @@ jobs:
                 echo "Linting and building project" 
     unit-tests-2:
         runs-on: ubuntu-latest
-        continue-on-error: true
+        continue-on-error: ${{inputs.continue-on-error}}
         steps:
             - name: Running unit tests
               run: echo "Running tests..."
