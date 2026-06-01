@@ -36,7 +36,9 @@ jobs:
           key: deps-node-modules-${{ hashFiles('13-caching/react-app/package-lock.json') }}
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: npm ci
+        run: |
+          npm intall
+          npm ci
       - name: Testing
         run: npm run test
       - name: Building
