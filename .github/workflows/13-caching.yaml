@@ -1,6 +1,5 @@
 name: 13 - Using Caching
-on:
-  workflow_dispatch:
+on: workflow_dispatch
 
 jobs:
   build:
@@ -9,7 +8,8 @@ jobs:
       run:
         working-directory: 04-using-actions/react-app
     steps:
-      - name: Checkout code
-        run: actions/checkout@v4
-      - name: Display info
-        run: "Checkout executed"
+      - name: Checkout Code
+        uses: actions/checkout@v4 
+
+      - name: Printing Folders
+        run: ls
