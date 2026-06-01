@@ -8,9 +8,9 @@ jobs:
     defaults:
       run:
         working-directory: 13-caching/react-app
+        #04-using-actions/react-app
     steps:
       - name: Checkout code
-        run: action/checkout@v4
+        run: actions/checkout@v4
       - name: Display info
         run: "Checkout executed"
-
