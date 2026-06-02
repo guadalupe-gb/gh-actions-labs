@@ -15,5 +15,5 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: pull react code
-              uses: actions/ckeckout@v4
+              uses: actions/checkout@v4
 
