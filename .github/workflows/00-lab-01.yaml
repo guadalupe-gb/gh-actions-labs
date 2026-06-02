@@ -1,0 +1,19 @@
+name: My lab workflow
+on: 
+    push:
+    workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: My fisrt step of buil
+              run: echo "Este es mi primer step"
+            - name: My second step of build
+              run: echo "Segundo step del build"
+    pull_code:
+        runs-on: ubuntu-latest
+        steps:
+            - name: pull react code
+              uses: actions/ckeckout@v4
+
