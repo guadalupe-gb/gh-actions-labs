@@ -1,5 +1,10 @@
 name: 15 - Working with Matrices
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+    inputs:
+      fail-fats:
+        type: boolean
+        default: true
 
 
 jobs:
@@ -7,7 +12,7 @@ jobs:
         name: ${{matrix.os}}-${{matrix.node_version}}
         runs-on: ${{matrix.os}}
         strategy:     
-          fail-fast: true   
+          fail-fast: ${{ inputs.fail-fats }}
           matrix:
             node_version: [18.x, 20.x, 21.x]
             os: 
