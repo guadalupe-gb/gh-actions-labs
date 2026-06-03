@@ -14,7 +14,7 @@ jobs:
         strategy:     
           fail-fast: ${{ inputs.fail-fast }}
           matrix:
-            node_version: [18.x, 20.x, 21.x]
+            node-version: [18.x, 20.x, 21.x]
             os: 
               - ubuntu-latest
               - ubuntu-24.04
