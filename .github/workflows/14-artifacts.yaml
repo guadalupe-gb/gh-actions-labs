@@ -27,7 +27,7 @@ jobs:
             run: echo "CACHE-KEY=deps-node-modules-${{ hashFiles('04-using-actions/react-app/package-lock.json') }}" >> "$GITHUB_OUTPUT"
           - name: Download cached dependencies
             id: cache
-            uses: actions/cache@v3. # genera un output llamado cache-hit con valores "true/false"
+            uses: actions/cache@v3 # genera un output llamado cache-hit con valores "true/false" 
             with:
               path: 04-using-actions/react-app
               key: ${{ steps.cache-key.outputs.CACHE-KEY }}
