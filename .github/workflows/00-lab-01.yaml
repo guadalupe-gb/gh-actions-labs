@@ -3,11 +3,12 @@ on: push
 
 jobs:
     my-matrix:
-        name: ${{matrix.node_version}}
+        name: ${{matrix.node_version}} - ${{ matrix.os}}
         strategy:
             matrix:
                 node_version: [14,16,18]
-        runs-on: ubuntu-latest
+                os: [ubuntu-latest, ubuntu-24.04]
+        runs-on: ${{ matrix.os }}
         steps:
             - name: Display node version
               run: echo "Hello ${{ github.run_number}}"
