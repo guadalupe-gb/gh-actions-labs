@@ -1,11 +1,7 @@
 name: 14-artifacts.yaml
 on:
     workflow_dispatch:
-        inputs:
-          use-cache:
-            type: boolean
-            description: Whether user or not cache
-            default: true
+
 env:
   build-artifact-key: app-${{ github.sha }}
   test-coverage-key: test-coverage-${{ github.sha }}
@@ -25,18 +21,18 @@ jobs:
           - name: Setup Node
             uses: actions/setup-node@v3
             with:
-              node-version: 20.x
+              node-version: '20.x'
           - name: Calculate Cache Key
             id: cache-key
             run: echo "CACHE-KEY=deps-node-modules-${{ hashFiles('04-using-actions/react-app/package-lock.json') }}" >> "$GITHUB_OUTPUT"
           - name: Download cached dependencies
             id: cache
-            uses: actions/cache@v3
+            uses: actions/cache@v3. # genera un output llamado cache-hit con valores "true/false"
             with:
               path: 04-using-actions/react-app
-              key: ${{ steps.cache-key.outputs.CACHE-KEY}}
+              key: ${{ steps.cache-key.outputs.CACHE-KEY }}
           - name: Install dependencies
-            if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+            if: steps.cache.outputs.cache-hit != 'true'  # 'true' = se econtró el caché, 'false' = caché no encontrado
             run: |
               npm install
               npm ci
