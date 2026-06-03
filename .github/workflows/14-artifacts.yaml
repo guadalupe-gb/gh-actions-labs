@@ -12,7 +12,7 @@ jobs:
         runs-on: ubuntu-latest
         defaults:
           run:
-            working-directory: 04-using-actions/react-app
+            working-directory: my-app/react-app
         outputs:
           cache-key: ${{ steps.cache-key.outputs.CACHE-KEY }}
         steps:
@@ -24,12 +24,12 @@ jobs:
               node-version: 20.x
           - name: Calculate Cache Key
             id: cache-key
-            run: echo "CACHE-KEY=deps-node-modules-${{ hashFiles('04-using-actions/react-app/package-lock.json') }}" >> "$GITHUB_OUTPUT"
+            run: echo "CACHE-KEY=deps-node-modules-${{ hashFiles('my-app/react-app/package-lock.json') }}" >> "$GITHUB_OUTPUT"
           - name: Download cached dependencies
             id: cache
             uses: actions/cache@v3 # genera un output llamado cache-hit con valores "true/false" 
             with:
-              path: 04-using-actions/react-app
+              path: my-app/react-app
               key: ${{ steps.cache-key.outputs.CACHE-KEY }}
           - name: Install dependencies
             if: ${{ steps.cache.outputs.cache-hit != 'true' }}  # 'true' = se econtró el caché, 'false' = caché no encontrado
@@ -42,14 +42,14 @@ jobs:
             uses: actions/upload-artifact@v4
             with:
               name: ${{ env.test-coverage-key }}
-              path: 04-using-actions/react-app/coverage
+              path: my-app/react-app/coverage
           - name: Build code
             run: npm run build
           - name: Upload build files
             uses: actions/upload-artifact@v4
             with:
               name: ${{ env.build-artifact-key }}
-              path: 04-using-actions/react-app/build
+              path: my-app/react-app/build
     deploy:
       runs-on: ubuntu-latest
       needs: 
