@@ -29,11 +29,11 @@ jobs:
               uses: actions/setup-node@v4
               with:
                 node-version: ${{matrix.node_version}}
+            - name: Display tag
+              run: echo "${{matrix.tag}} - ${{matrix.os}} - ${{matrix.node_version}}"
             - name: Fail if experimental
               if: ${{ matrix.tag == 'experimental' }}
               run: exit 1
-            - name: Display tag
-              run: echo "${{matrix.tag}} - ${{matrix.os}} - ${{matrix.node_version}}"
             - name: Perform some tests
               run: |
                 echo "Running tests on OS ${{matrix.os}} and NodeJS ${{matrix.node_version}}"
