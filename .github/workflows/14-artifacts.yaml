@@ -1,0 +1,69 @@
+name: 14-artifacts.yaml
+on:
+    workflow_dispatch:
+        inputs:
+          use-cache:
+            type: boolean
+            description: Wheter user or not cache
+            default: true
+env:
+  build-artifact-key: app-${{ github.sha }}
+  test-coverage-key: test-coverage-${{ github.sha }}
+
+   
+
+jobs:
+    test-build:
+        runs-on: ubuntu-latest
+        defaults:
+          run:
+            working-directory: 04-using-actions/react-app
+        outputs:
+          cache-key: ${{ steps.cache-key.outputs.CACHE-KEY }}
+        steps:
+          - name: Checkout code
+            uses: actions/checkout@v4
+          - name: Setup Node
+            uses: actions/setup-node@v3
+            with:
+              node-version: 20.x
+          - name: Calculate Cache Key
+            id: cache-key
+            run: echo "CACHE-KEY=deps-node-modules-${{ hashFiles('04-using-actions/react-app/package-lock.json') }}" >> "$GITHUB_OUTPUT"
+          - name: Download cached dependencies
+            id: cache
+            uses: actions/cache@v3
+            with:
+              path: 04-using-actions/react-app
+              key: ${{ steps.cache-key.outputs.CACHE-KEY}}
+          - name: Install dependencies
+            if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+            run: |
+              npm install
+              npm ci
+          - name: Unit tests
+            run: npm run test -- --coverage
+          - name: Upload Result
+            uses: actions/upload-artifact@v4
+            with:
+              name: ${{ env.test-coverage-key }}
+              path: 04-using-actions/react-app/coverage
+          - name: Build code
+            run: npm run build
+          - name: Upload build files
+            uses: actions/upload-artifact@v4
+            with:
+              name: ${{ env.build-artifact-key }}
+              path: 04-using-actions/react-app/build
+    deploy:
+      runs-on: ubuntu-latest
+      needs: 
+        - test-build
+      steps:
+        - name: Download build files
+          uses: actions/download-artifact@v4
+          with:
+            name: ${{ env.build-artifact-key }}
+            path: build
+        - name: Show folder structure,
+          run: ls -R
