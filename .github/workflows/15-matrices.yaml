@@ -5,6 +5,7 @@ on: workflow_dispatch
 jobs:
     backwards-compatibility:
         name: ${{matrix.os}}-${{matrix.node_version}}
+        runs-on: ${{matrix.os}}
         strategy:     
           fail-fast: true   
           matrix:
@@ -18,8 +19,6 @@ jobs:
               - os: ubuntu-latest
                 node-version: 21.x
                 tag: experimental
-
-        runs-on: ubuntu-latest
         steps:
             - name: Setup node
               uses: actions/setup-node@v4
