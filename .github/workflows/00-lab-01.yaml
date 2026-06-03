@@ -1,18 +1,14 @@
-name: My lab workflow
-on: 
-    workflow_dispatch:
+name: Matriz lab
+on: push
 
 jobs:
-    build:
+    my-matrix:
+        name: ${{matrix.node_version}}
+        strategy:
+            matrix:
+                node_version: [14,16,18]
         runs-on: ubuntu-latest
         steps:
-            - name: My fisrt step of buil
-              run: echo "Este es mi primer step"
-            - name: My second step of build
-              run: echo "Segundo step del build"
-    pull_code:
-        runs-on: ubuntu-latest
-        steps:
-            - name: pull react code
-              uses: actions/checkout@v4
+            - name: Display node version
+              run: echo "Hello ${{ github.run_number}}"
 
