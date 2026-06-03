@@ -32,7 +32,7 @@ jobs:
               path: 04-using-actions/react-app
               key: ${{ steps.cache-key.outputs.CACHE-KEY }}
           - name: Install dependencies
-            if: steps.cache.outputs.cache-hit != 'true'  # 'true' = se econtró el caché, 'false' = caché no encontrado
+            if: ${{ steps.cache.outputs.cache-hit != 'true' }}  # 'true' = se econtró el caché, 'false' = caché no encontrado
             run: |
               npm install
               npm ci
