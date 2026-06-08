@@ -3,7 +3,7 @@ on:
     workflow_dispatch:
         inputs:
             target-env:
-                descroption: Which environment to target for dependency installation
+                description: Which environment to target for dependency installation
                 type: choice
                 options:
                     - dev
