@@ -12,9 +12,9 @@ on:
             working-dir:
                 type: string
                 default: app/react-app
-            debug:
-                type: string
-                default: 'false'
+            # debug:
+            #     type: string
+            #     default: 'false'
 # env:            
 #     gh-token: ${{secrets.GITHUB_TOKEN}}
 #     # Retrieve value from secrets.GITHUB_TOKEN
