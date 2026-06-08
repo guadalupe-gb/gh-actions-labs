@@ -5,10 +5,13 @@ on:
         inputs:
             base-branch:
                 type: string
+                default: main
             target-branch:
                 type: string
+                default: update-dependencies
             working-dir:
                 type: string
+                default: 
             debug:
                 type: string
 # env:            
@@ -24,8 +27,8 @@ jobs:
             - name: Check for dependency updates
               uses: ./.github/actions/js-dependency-update
               with:
-                base-branch: main
-                target-branch: dependency-updates
-                working-dir: ./.github/actions/js-dependency-update
+                base-branch: ${{ inputs.base-branch }}
+                target-branch: ${{ inputs.target-branch }}
+                working-dir: ${{ inputs.working-dir}}
                                       
 
