@@ -11,9 +11,9 @@ on:
                 type: string
             debug:
                 type: string
-env:            
-    gh-token: ${{secrets.GITHUB_TOKEN}}
-    # Retrieve value from secrets.GITHUB_TOKEN
+# env:            
+#     gh-token: ${{secrets.GITHUB_TOKEN}}
+#     # Retrieve value from secrets.GITHUB_TOKEN
 
 jobs:
     dependency-update:
@@ -24,8 +24,8 @@ jobs:
             - name: Check for dependency updates
               uses: ./.github/actions/js-dependency-update
               with:
-                base-branch: dev
-                target-branch: main
+                base-branch: main
+                target-branch: dependency-updates
                 working-dir: ./.github/actions/js-dependency-update
                                       
 
