@@ -1,5 +1,5 @@
 name: 17 - 2 - Custom Actions - JS
-run-name: 17 - 2 - Custom Actions - JS- from ${{inputs.base-branch}} to ${{inputs.target-branch}} on ${{inputs.working-dir}}
+run-name: 17 - 2 - Custom Actions - JS- BB ${{inputs.base-branch}} - TB ${{inputs.target-branch}} - WD ${{inputs.working-dir}}
 on:
     workflow_dispatch:
         inputs:
