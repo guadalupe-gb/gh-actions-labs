@@ -47,9 +47,7 @@ async function run() {
   core.info('[js-dependency-update] : Target branch: ${targetBranch} ');
   core.info('[js-dependency-update] :  Working Directory: ${workingDir} ');
   
-  await exec.exec('npm update',[],{
-    cwd: workingDir,
-  });
+  await exec.exec('npm update',[],{ cwd: workingDir, });
   
   const gitStatus = await exec.getExecOutput('git status -s package*.json',[],{
     cwd: workingDir,

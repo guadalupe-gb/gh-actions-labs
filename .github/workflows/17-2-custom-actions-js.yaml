@@ -11,7 +11,7 @@ on:
                 default: update-dependencies
             working-dir:
                 type: string
-                default: app/react-app
+                default: my-app/react-app
             debug:
                 type: string
                 default: 'false'
