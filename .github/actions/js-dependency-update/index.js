@@ -13,40 +13,46 @@ const exec = require('@actions/exec');
     4.2 - Create a PR to the base-branch using the octokit API
   5.- Otherwise, conclude the custom action
   */
-const validateBranchName=({ branchName }) => (/^[a-zA-Z0-9_\-\.\/]+$/.test(branchName))
-const validateDirectoryName=({ DirectoryName }) => (/^[a-zA-Z0-9_\-\/]+$/.test(DirectoryName))
+const validateBranchName=({ branchName }) => (/^[a-zA-Z0-9_\-\.\/]+$/.test(branchName));
+const validateDirectoryName=({ DirectoryName }) => (/^[a-zA-Z0-9_\-\/]+$/.test(DirectoryName));
 
 async function run() {
-  const baseBranch = core.getInput('base-branch')
-  const targetBranch =core.getInput('target-branch')
-  const workingDir = core.getInput('working-dir')
-  const ghToken = core.getInput('gh-token')
-  const debug = core.getInput('debug')
+  const baseBranch = core.getInput('base-branch');
+  const targetBranch =core.getInput('target-branch');
+  const workingDir = core.getInput('working-dir');
+  const ghToken = core.getInput('gh-token');
+  const debug = core.getInput('debug');
 
   core.setSecret('ghToken');
 
-  if (!validateBranchName({ baseBranch }))
-    core.setFailed('Invalid base-branch Name. Base Branch Name should include only characters, numbers, hypens, underscores, dots and forward slashes')
+  if (!validateBranchName({ baseBranch })) {
+    core.setFailed('Invalid base-branch Name. Base Branch Name should include only characters, numbers, hypens, underscores, dots and forward slashes');
     return;
-    
-  if (!validateBranchName({ targetBranch }))
-    core.setFailed('Invalid target-branch Name. Target Branch Name should include only characters, numbers, hypens, underscores, dots and forward slashes')
-    return;
+  }
 
-  if (!validateWorkingDir({ workingDir }))
-    core.setFailed('Invalid Working Directory Name. Working Directory should include only characters, numbers, hypens, underscores and forward slashes')
+    
+  if (!validateBranchName({ targetBranch })) {
+    core.setFailed('Invalid target-branch Name. Target Branch Name should include only characters, numbers, hypens, underscores, dots and forward slashes');
     return;
+  }
+
+
+  if (!validateWorkingDir({ workingDir })) {
+    core.setFailed('Invalid Working Directory Name. Working Directory should include only characters, numbers, hypens, underscores and forward slashes');
+    return;
+  }
+
 
   core.info('[js-dependency-update] : Base branch: ${baseBranch} ');
   core.info('[js-dependency-update] : Target branch: ${targetBranch} ');
   core.info('[js-dependency-update] :  Working Directory: ${workingDir} ');
   
   await exec.exec('npm update',[],{
-    cwd: workingDir
+    cwd: workingDir,
   });
   
   const gitStatus = await exec.getExecOutput('git status -s package*.json',[],{
-    cwd: workingDir
+    cwd: workingDir,
   });
 
   if (gitStatus.stdout.length > 0){
